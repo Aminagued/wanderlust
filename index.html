@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust Adventures | Explore the World</title>
+    <style>
+        /* Reset and Base Styles */
+        :root {
+            --primary: #2a9d8f;
+            --secondary: #264653;
+            --accent: #e9c46a;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --text: #333;
+            --text-light: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 20px auto;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Featured Destinations */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .destination-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .card-location {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .card-location i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+
+        .card-description {
+            margin-bottom: 20px;
+        }
+
+        .card-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .testimonials .section-title {
+            color: white;
+        }
+
+        .testimonials .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--accent);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* About Page Styles */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin: 60px 0;
+        }
+
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        /* Team Section */
+        .team {
+            margin: 80px 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 20px;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .member-position {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .member-bio {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Destinations Page Styles */
+        .destinations-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .destinations-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 0;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 99;
+            }
+
+            nav.active {
+                transform: translateY(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 80px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Page Transition Animation */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo" onclick="showPage('home')">
+                <span class="logo-icon">🌍</span>
+                <span>Wander</span>lust
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('destinations')">Destinations</a></li>
+                    <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div class="page active" id="home">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover Your Next Adventure</h1>
+                <p>Explore the world's most breathtaking destinations with our expertly crafted tours and travel experiences.</p>
+                <div class="hero-btns">
+                    <a href="#" class="btn" onclick="showPage('destinations')">Explore Tours</a>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Destinations -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Destinations</h2>
+                <p class="section-subtitle">Discover our most popular travel destinations that our customers love</p>
+                
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Santorini, Greece" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title">Santorini, Greece</h3>
+                            <div class="card-location">
+                                <i>📍</i> Cyclades, Greece
+                            </div>
+                            <p class="card-description">Experience the iconic white-washed buildings and breathtaking sunsets of this romantic Greek island paradise.</p>
+                            <div class="card-price">From $1,299</div>
+                            <a href="#" class="btn">View Tour</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kyoto, Japan" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title">Kyoto, Japan</h3>
+                            <div class="card-location">
+                                <i>📍</i> Kansai Region, Japan
+                            </div>
+                            <p class="card-description">Immerse yourself in traditional Japanese culture with ancient temples, tea ceremonies, and cherry blossoms.</p>
+                            <div class="card-price">From $2,199</div>
+                            <a href="#" class="btn">View Tour</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Machu Picchu, Peru" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title">Machu Picchu, Peru</h3>
+                            <div class="card-location">
+                                <i>📍</i> Cusco Region, Peru
+                            </div>
+                            <p class="card-description">Trek through the Andes to discover this ancient Incan citadel, one of the New Seven Wonders of the World.</p>
+                            <div class="card-price">From $1,899</div>
+                            <a href="#" class="btn">View Tour</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our Travelers Say</h2>
+                <p class="section-subtitle">Hear from our satisfied customers about their amazing experiences</p>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">The trip to Santorini was absolutely magical! Every detail was perfectly arranged, and our guide was incredibly knowledgeable. Can't wait to book our next adventure with Wanderlust!</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="author-img">
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Santorini Explorer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">As a solo traveler, I was nervous about my trip to Japan, but Wanderlust made everything so easy. The cultural experiences were authentic, and I made lifelong friends on the tour.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen" class="author-img">
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <p>Kyoto Cultural Tour</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">The Machu Picchu trek was challenging but so rewarding. The team took care of everything, from our comfortable lodgings to the most delicious meals. A truly once-in-a-lifetime experience!</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Elena Rodriguez" class="author-img">
+                            <div class="author-info">
+                                <h4>Elena Rodriguez</h4>
+                                <p>Inca Trail Adventurer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for exclusive travel deals and inspiration</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Destinations Page -->
+    <div class="page" id="destinations">
+        <!-- Destinations Hero -->
+        <section class="destinations-hero">
+            <div class="container">
+                <h1>Our Destinations</h1>
+                <p>Explore our curated collection of the world's most amazing places</p>
+            </div>
+        </section>
+
+        <!-- Destinations Filter -->
+        <section class="section">
+            <div class="container">
+                <div class="destinations-filter">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Europe</button>
+                    <button class="filter-btn">Asia</button>
+                    <button class="filter-btn">Americas</button>
+                    <button class="filter-btn">Africa</button>
+                </div>
+                
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Santorini, Greece" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title">Santorini, Greece</h3>
+                            <div class="card-location">
+                                <i>📍</i> Cyclades, Greece
+                            </div>
+                            <p class="card-description">Experience the iconic white-washed buildings and breathtaking sunsets of this romantic Greek island paradise.</p>
+                            <div class="card-price">From $1,299</div>
+                            <a href="#" class="btn">View Tour</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kyoto, Japan" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title">Kyoto, Japan</h3>
+                            <div class="card-location">
+                                <i>📍</i> Kansai Region, Japan
+                            </div>
+                            <p class="card-description">Immerse yourself in traditional Japanese culture with ancient temples, tea ceremonies, and cherry blossoms.</p>
+                            <div class="card-price">From $2,199</div>
+                            <a href="#" class="btn">View Tour</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Machu Picchu, Peru" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title">Machu Picchu, Peru</h3>
+                            <div class="card-location">
+                                <i>📍</i> Cusco Region, Peru
+                            </div>
+                            <p class="card-description">Trek through the Andes to discover this ancient Incan citadel, one of the New Seven Wonders of the World.</p>
+                            <div class="card-price">From $1,899</div>
+                            <a href="#" class="btn">View Tour</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Paris, France" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title">Paris, France</h3>
+                            <div class="card-location">
+                                <i>📍</i> Île-de-France, France
+                            </div>
+                            <p class="card-description">The City of Light offers iconic landmarks, world-class museums, and unforgettable culinary experiences.</p>
+                            <div class="card-price">From $1,599</div>
+                            <a href="#" class="btn">View Tour</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bali, Indonesia" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title">Bali, Indonesia</h3>
+                            <div class="card-location">
+                                <i>📍</i> Lesser Sunda Islands, Indonesia
+                            </div>
+                            <p class="card-description">Discover lush jungles, pristine beaches, and a rich spiritual culture in this Indonesian paradise.</p>
+                            <div class="card-price">From $1,499</div>
+                            <a href="#" class="btn">View Tour</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cape Town, South Africa" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title">Cape Town, South Africa</h3>
+                            <div class="card-location">
+                                <i>📍</i> Western Cape, South Africa
+                            </div>
+                            <p class="card-description">Explore stunning landscapes, vibrant culture, and incredible wildlife in this diverse South African city.</p>
+                            <div class="card-price">From $2,299</div>
+                            <a href="#" class="btn">View Tour</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Us Page -->
+    <div class="page" id="about">
+        <!-- About Hero -->
+        <section class="about-hero">
+            <div class="container">
+                <h1>About Wanderlust</h1>
+                <p>Our story, mission, and the team behind your unforgettable journeys</p>
+            </div>
+        </section>
+
+        <!-- About Content -->
+        <section class="section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our Team Traveling">
+                    </div>
+                    <div class="about-text">
+                        <h2>Our Story</h2>
+                        <p>Founded in 2010 by a group of passionate travelers, Wanderlust Adventures began with a simple mission: to create meaningful travel experiences that go beyond the typical tourist itinerary.</p>
+                        <p>What started as a small operation organizing hiking trips in the Alps has grown into a global travel company with operations on six continents. Yet, we've never lost sight of our original values: authenticity, sustainability, and creating genuine connections between travelers and local communities.</p>
+                        <p>Today, we're proud to have helped over 50,000 travelers discover the world in a more meaningful way, with a network of local guides and partners who share our passion for responsible tourism.</p>
+                    </div>
+                </div>
+                
+                <div class="about-content reverse">
+                    <div class="about-text">
+                        <h2>Our Mission</h2>
+                        <p>At Wanderlust, we believe travel has the power to change lives and make the world a better place. Our mission is threefold:</p>
+                        <p><strong>For Travelers:</strong> To create transformative experiences that expand horizons, challenge perspectives, and create lifelong memories.</p>
+                        <p><strong>For Local Communities:</strong> To ensure tourism benefits local economies while preserving cultural heritage and natural environments.</p>
+                        <p><strong>For the Planet:</strong> To operate sustainably and minimize our environmental impact through carbon offset programs and eco-friendly practices.</p>
+                    </div>
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sustainable Tourism">
+                    </div>
+                </div>
+                
+                <!-- Stats -->
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">13+</div>
+                        <div class="stat-label">Years in Business</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Happy Travelers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">120+</div>
+                        <div class="stat-label">Destinations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Customer Satisfaction</div>
+                    </div>
+                </div>
+                
+                <!-- Team Section -->
+                <div class="team">
+                    <h2 class="section-title">Meet Our Team</h2>
+                    <p class="section-subtitle">The passionate travel experts behind your unforgettable experiences</p>
+                    
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Jessica Parker" class="member-img">
+                            <div class="member-info">
+                                <h3 class="member-name">Jessica Parker</h3>
+                                <p class="member-position">Founder & CEO</p>
+                                <p class="member-bio">After backpacking through 60 countries, Jessica founded Wanderlust to share her passion for authentic travel experiences.</p>
+                                <a href="#" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                        
+                        <div class="team-member">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Chen" class="member-img">
+                            <div class="member-info">
+                                <h3 class="member-name">David Chen</h3>
+                                <p class="member-position">Director of Operations</p>
+                                <p class="member-bio">With 15 years in the travel industry, David ensures every detail of your journey is perfectly arranged.</p>
+                                <a href="#" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                        
+                        <div class="team-member">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria Rodriguez" class="member-img">
+                            <div class="member-info">
+                                <h3 class="member-name">Maria Rodriguez</h3>
+                                <p class="member-position">Head of Sustainability</p>
+                                <p class="member-bio">Maria leads our initiatives to minimize environmental impact and maximize benefits to local communities.</p>
+                                <a href="#" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                        
+                        <div class="team-member">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="James Wilson" class="member-img">
+                            <div class="member-info">
+                                <h3 class="member-name">James Wilson</h3>
+                                <p class="member-position">Customer Experience</p>
+                                <p class="member-bio">James and his team are dedicated to ensuring your journey exceeds expectations at every step.</p>
+                                <a href="#" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Wanderlust</h3>
+                    <p>Creating unforgettable travel experiences since 2010. Our mission is to connect people with the world's most incredible destinations through sustainable and meaningful travel.</p>
+                    <div class="social-links">
+                        <a href="#"><i>📱</i></a>
+                        <a href="#"><i>📘</i></a>
+                        <a href="#"><i>📸</i></a>
+                        <a href="#"><i>🐦</i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('destinations')">Destinations</a></li>
+                        <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                        <li><a href="#">Travel Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Booking Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Travel Insurance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p><i>📍</i> 123 Travel Street, Adventure City, AC 12345</p>
+                    <p><i>📞</i> +1 (800) 123-4567</p>
+                    <p><i>✉️</i> hello@wanderlust.com</p>
+                    <p><i>🕒</i> Mon-Fri: 9AM-6PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Wanderlust Adventures. All rights reserved. | Designed with ❤️ for travelers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/typescript">
+        // TypeScript code will be compiled to JavaScript
+        interface PageElements {
+            home: HTMLElement;
+            destinations: HTMLElement;
+            about: HTMLElement;
+        }
+
+        class TourismWebsite {
+            private pages: PageElements;
+            private mobileMenuBtn: HTMLElement;
+            private mainNav: HTMLElement;
+
+            constructor() {
+                this.pages = {
+                    home: document.getElementById('home') as HTMLElement,
+                    destinations: document.getElementById('destinations') as HTMLElement,
+                    about: document.getElementById('about') as HTMLElement
+                };
+
+                this.mobileMenuBtn = document.getElementById('mobileMenuBtn') as HTMLElement;
+                this.mainNav = document.getElementById('mainNav') as HTMLElement;
+
+                this.initEventListeners();
+            }
+
+            private initEventListeners(): void {
+                // Mobile menu toggle
+                this.mobileMenuBtn.addEventListener('click', () => {
+                    this.toggleMobileMenu();
+                });
+
+                // Filter buttons for destinations
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        this.handleFilterClick(button as HTMLElement);
+                    });
+                });
+            }
+
+            public showPage(pageId: keyof PageElements): void {
+                // Hide all pages
+                Object.values(this.pages).forEach(page => {
+                    page.classList.remove('active');
+                });
+
+                // Show the selected page
+                this.pages[pageId].classList.add('active');
+
+                // Close mobile menu if open
+                this.mainNav.classList.remove('active');
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+
+            private toggleMobileMenu(): void {
+                this.mainNav.classList.toggle('active');
+            }
+
+            private handleFilterClick(clickedButton: HTMLElement): void {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                filterButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+
+                clickedButton.classList.add('active');
+                // Here you would typically filter the destinations
+                // For this demo, we're just updating the UI
+            }
+        }
+
+        // Initialize the website when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const website = new TourismWebsite();
+
+            // Make showPage available globally for onclick attributes
+            (window as any).showPage = (pageId: keyof PageElements) => {
+                website.showPage(pageId);
+            };
+        });
+    </script>
+
+    <!-- TypeScript Compiler (in-browser) -->
+    <script src="https://www.typescriptlang.org/js/browser.js"></script>
+    <script type="text/javascript">
+        // Compile TypeScript to JavaScript
+        try {
+            var tsCode = document.querySelector('script[type="text/typescript"]').textContent;
+            var jsCode = ts.transpile(tsCode);
+            var script = document.createElement('script');
+            script.textContent = jsCode;
+            document.body.appendChild(script);
+        } catch (e) {
+            console.error("TypeScript compilation error:", e);
+        }
+    </script>
+</body>
+</html>
